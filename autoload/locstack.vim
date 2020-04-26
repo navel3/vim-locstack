@@ -14,6 +14,10 @@ function! locstack#save() abort
     call remove(w:locstack, w:locstack_level, len(w:locstack) - 1)
   endif
 
+  if len(w:locstack) > 0 && w:locstack[w:locstack_level - 1] == l:new_elem
+    return
+  endif
+
   call add(w:locstack, l:new_elem)
   let w:locstack_level += 1
 endfunction
